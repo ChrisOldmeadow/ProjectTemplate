@@ -1,15 +1,17 @@
 ---
-title: "Sample size Report"
+title: "Big Toe Research Project"
 author: "Chris Oldmeadow"
+client: "Client Name"
 quote: "12345"
 dir:  "/ /Project/Directory"
 geometry: "left=3cm,right=3cm,top=2cm,bottom=2cm"
 
+
 output: 
-    pdf_document:
+    bookdown::pdf_document2:
       df_print: "kable"
       toc: TRUE
-      template: mytemplate.tex
+      template: StatisticalAnalysisReportTemplate.tex
     
 
 ---

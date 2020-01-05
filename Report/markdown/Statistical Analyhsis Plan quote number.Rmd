@@ -1,0 +1,60 @@
+---
+title: "Project name"
+author: "Chris Oldmeadow"
+quote: "1234"
+dir:  ""
+geometry: "left=3cm,right=3cm,top=2cm,bottom=2cm"
+
+output: 
+    pdf_document:
+      df_print: "kable"
+      toc: TRUE
+      template: SAP_template.tex
+    
+
+---
+
+
+
+```{r setup, echo=FALSE, message = FALSE}
+library(ggdag)
+
+```
+
+# Summary
+
+
+The aim of this project is to assess if any of the eeffect of asthma during pregnacy on childhood lung function is mediated through childhood weight change form birth to 6 weeks.  A summary of the casual relationships between the variables of interest is seen in the directed Acyclic Graph below:
+
+
+```{r, echo=FALSE}
+tidy_ggdag <- dagify(y ~ a + m + l+ c1 + c2,
+                     a ~ c1,
+             m ~ a+l+c1 + c2,
+             l ~ a,
+              labels = c("a" = "Asthma in pregnancy", "y" = "Lung function", "m" = "Weight gain \n (birth to 6W)", "c1" = "Smoking", "c2" = "Sex", "l"= "gestational \n age"),
+             exposure = "a",
+             outcome = "y") %>% 
+  tidy_dagitty() 
+
+
+
+ggdag(tidy_ggdag, use_labels = "label") +
+  theme_dag()
+
+```
+
+
+
+# Statistical methodology
+
+
+
+
+
+
+# Session Info
+
+```{r, echo = FALSE}
+sessionInfo()
+```
